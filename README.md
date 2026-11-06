@@ -1,3 +1,3 @@
 # ALU Higher Level Programming
 
-Python programming projects and assignments.
+This repository contains my ALU higher-level programming assignments in Python.
