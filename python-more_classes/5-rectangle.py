@@ -51,8 +51,8 @@ class Rectangle:
         """Return the rectangle using the # character."""
         if self.__width == 0 or self.__height == 0:
             return ""
-        return ("#" * self.__width + "\n") * (self.__height - 1) + "#" * self.__width
-
+        row = "#" * self.__width
+        return "\n".join([row] * self.__height)
     def __repr__(self):
         """Return a string that recreates the rectangle."""
         return "Rectangle({}, {})".format(self.__width, self.__height)
