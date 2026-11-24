@@ -20,3 +20,35 @@ A MyList instance behaves like a regular list::
     [1, 2, 3, 4, 5]
     >>> print(my_list)
     [1, 4, 2, 3, 5]
+
+``append`` adds values using regular list behavior::
+
+    >>> my_list.append(0)
+    >>> print(my_list)
+    [1, 4, 2, 3, 5, 0]
+
+``print_sorted`` prints a sorted copy and leaves the list unchanged::
+
+    >>> my_list.print_sorted()
+    [0, 1, 2, 3, 4, 5]
+    >>> print(my_list)
+    [1, 4, 2, 3, 5, 0]
+
+Negative values are sorted normally::
+
+    >>> negative = MyList([-2, -10, 5, 0])
+    >>> negative.print_sorted()
+    [-10, -2, 0, 5]
+    >>> print(negative)
+    [-2, -10, 5, 0]
+
+An empty list prints an empty sorted list::
+
+    >>> MyList().print_sorted()
+    []
+
+``print_sorted`` returns None::
+
+    >>> my_list.print_sorted() is None
+    [0, 1, 2, 3, 4, 5]
+    True
