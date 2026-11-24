@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""Add two integer or float values."""
+"""Module for adding two integers."""
 
 
 def add_integer(a, b=98):
-    """Return the sum of a and b after casting floats to integers."""
+    """Return the sum of two numbers after integer conversion."""
     if type(a) not in (int, float):
         raise TypeError("a must be an integer")
     if type(b) not in (int, float):
