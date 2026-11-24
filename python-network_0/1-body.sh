@@ -1,3 +1,3 @@
 #!/bin/bash
-# Display the body only when the HTTP response status is 200
-[ "$(curl -s -o /dev/null -w '%{http_code}' "$1")" = "200" ] && curl -s "$1"
+# Sends a GET request and displays the response body
+curl -sLf "$1"
