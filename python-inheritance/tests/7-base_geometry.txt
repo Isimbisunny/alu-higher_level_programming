@@ -1,0 +1,26 @@
+The ``BaseGeometry`` class
+==========================
+
+Using ``integer_validator``
+---------------------------
+
+Import the class::
+
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> bg = BaseGeometry()
+
+Valid positive integers are accepted::
+
+    >>> bg.integer_validator("width", 12)
+
+Booleans are not integers::
+
+    >>> bg.integer_validator("size", True)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+Zero and negative values are rejected::
+
+    >>> bg.integer_validator("height", 0)
+    Traceback (most recent call last):
+    ValueError: height must be greater than 0
