@@ -1,11 +1,53 @@
-Text indentation doctests
-=========================
+Tests for text_indentation
 
-    >>> text_indentation = __import__('5-text_indentation').text_indentation
-    >>> text_indentation("Hello. World? Next:")
-    Hello.
-    <BLANKLINE>
-    World?
-    <BLANKLINE>
-    Next:
-    <BLANKLINE>
+>>> text_indentation = __import__("5-text_indentation").text_indentation
+
+>>> text_indentation("Holberton School")
+Holberton School
+
+>>> text_indentation("Holberton.School")
+Holberton.
+<BLANKLINE>
+School
+
+>>> text_indentation("Holberton. School? How are you: John")
+Holberton.
+<BLANKLINE>
+School?
+<BLANKLINE>
+How are you:
+<BLANKLINE>
+John
+
+>>> text_indentation("  Hello.   World  ")
+Hello.
+<BLANKLINE>
+World
+
+>>> text_indentation("Hello.")
+Hello.
+<BLANKLINE>
+
+>>> text_indentation("")
+
+>>> text_indentation("   ")
+
+>>> text_indentation("Hello\n\nWorld")
+Hello
+<BLANKLINE>
+World
+
+>>> text_indentation(12)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation(None)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation()
+Traceback (most recent call last):
+    ...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
