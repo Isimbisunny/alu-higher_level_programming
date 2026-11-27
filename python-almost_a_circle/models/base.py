@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Base model for managing identifiers and serialization."""
 import json
+import csv
 
 
 class Base:
@@ -46,5 +47,31 @@ class Base:
             with open(cls.__name__ + ".json", "r") as file:
                 data = cls.from_json_string(file.read())
                 return [cls.create(**item) for item in data]
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serialize instances into a CSV file."""
+        fields = ["id", "size", "x", "y"]
+        if cls.__name__ == "Rectangle":
+            fields = ["id", "width", "height", "x", "y"]
+        with open(cls.__name__ + ".csv", "w", newline="") as file:
+            writer = csv.writer(file)
+            for obj in list_objs or []:
+                data = obj.to_dictionary()
+                writer.writerow([data[key] for key in fields])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserialize instances from a CSV file."""
+        fields = ["id", "size", "x", "y"]
+        if cls.__name__ == "Rectangle":
+            fields = ["id", "width", "height", "x", "y"]
+        try:
+            with open(cls.__name__ + ".csv", newline="") as file:
+                reader = csv.reader(file)
+                return [cls.create(**dict(zip(fields, map(int, row))))
+                        for row in reader if row]
         except FileNotFoundError:
             return []
