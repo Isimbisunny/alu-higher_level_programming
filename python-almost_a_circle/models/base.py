@@ -75,3 +75,31 @@ class Base:
                         for row in reader if row]
         except FileNotFoundError:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Save a list of instances to a CSV file."""
+        if cls.__name__ == "Rectangle":
+            fields = ["id", "width", "height", "x", "y"]
+        else:
+            fields = ["id", "size", "x", "y"]
+        with open(cls.__name__ + ".csv", "w", newline="") as file:
+            writer = csv.writer(file)
+            for obj in list_objs or []:
+                data = obj.to_dictionary()
+                writer.writerow([data[key] for key in fields])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Load instances from a CSV file."""
+        if cls.__name__ == "Rectangle":
+            fields = ["id", "width", "height", "x", "y"]
+        else:
+            fields = ["id", "size", "x", "y"]
+        try:
+            with open(cls.__name__ + ".csv", "r", newline="") as file:
+                reader = csv.reader(file)
+                return [cls.create(**dict(zip(fields, map(int, row))))
+                        for row in reader if row]
+        except FileNotFoundError:
+            return []
